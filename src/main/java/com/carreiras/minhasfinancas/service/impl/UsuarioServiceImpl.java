@@ -22,8 +22,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario salvarUsuario(Usuario usuario) {
-        // TODO Auto-generated method stub
-        return null;
+        validarEmail(usuario.getEmail());
+        return usuarioRepository.save(usuario);
     }
 
     @Override
