@@ -3,16 +3,11 @@ package com.carreiras.minhasfinancas.service;
 import com.carreiras.minhasfinancas.exception.RegraNegocioException;
 import com.carreiras.minhasfinancas.model.entity.Usuario;
 import com.carreiras.minhasfinancas.model.repository.UsuarioRepository;
-import com.carreiras.minhasfinancas.service.UsuarioService;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-
-// @SpringBootTest
-// @ActiveProfiles("test")
 
 @SpringBootTest
 @ActiveProfiles("test")
