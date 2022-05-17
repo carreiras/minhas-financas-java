@@ -1,5 +1,8 @@
 package com.carreiras.minhasfinancas.service.impl;
 
+import java.util.Optional;
+
+import com.carreiras.minhasfinancas.exception.ErroAutenticacao;
 import com.carreiras.minhasfinancas.exception.RegraNegocioException;
 import com.carreiras.minhasfinancas.model.entity.Usuario;
 import com.carreiras.minhasfinancas.model.repository.UsuarioRepository;
@@ -16,8 +19,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario autenticar(String email, String senha) {
-        // TODO Auto-generated method stub
-        return null;
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+
+        if (!usuario.isEmpty())
+            throw new ErroAutenticacao("Usuário não encontrado.");
+
+        if (!usuario.get().getSenha().equals(senha))
+            throw new ErroAutenticacao("Senha inválida.");
+
+        return usuario.get();
     }
 
     @Override
@@ -30,8 +40,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void validarEmail(String email) {
         boolean existe = usuarioRepository.existsByEmail(email);
 
-        if (existe) {
+        if (existe)
             throw new RegraNegocioException("Já existe um usuário cadastrado com este e-mail.");
-        }
     }
 }
